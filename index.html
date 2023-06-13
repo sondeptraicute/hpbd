@@ -186,6 +186,7 @@
             setTimeout(function() {
                 loadingOverlay.style.display = "none";
                 container.style.display = "block";
+                startConfetti(); // Gọi hàm bắt đầu hiệu ứng confetti
             }, 3000); // Thời gian tạm thời 3 giây, bạn có thể thay đổi thời gian tùy ý
         }
 
@@ -203,12 +204,10 @@
             // Đếm ngược
             countdown();
         });
-             // Hàm bắt đầu hiệu ứng confetti
+    // Hàm bắt đầu hiệu ứng confetti
     function startConfetti() {
-        setTimeout(function() {
-            confetti.start();
-            stopConfetti(); // Gọi hàm dừng hiệu ứng confetti sau một khoảng thời gian
-        }, 3000); // Thời gian tạm thời 3 giây, bạn có thể thay đổi thời gian tùy ý
+        confetti.start();
+        stopConfetti(); // Gọi hàm dừng hiệu ứng confetti sau một khoảng thời gian
     }
 
     // Hàm dừng hiệu ứng confetti
