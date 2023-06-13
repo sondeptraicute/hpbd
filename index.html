@@ -80,14 +80,19 @@
         
         .birthday-message {
             color: white;
-            font-size: 24px;
+            font-size: 20px;
             text-align: center;
-            margin-top: 20px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
 
 <body>
+    <div class="birthday-message">Đếm ngược đến sinh nhật Phạm Thế Sơn</div>
+    <div id="countdown">00:00:00</div>
     <div class="container-loading" id="loadingOverlay">
         <div class="text-load">
             <h1>Loading...</h1>
@@ -98,9 +103,9 @@
             </div>
         </div>
     </div>
+    <!-- partial:index.partial.html -->
+
     <div class="container">
-        <div id="countdown">00:00:00</div>
-        <div class="birthday-message">Đếm ngược đến sinh nhật Phạm Thế Sơn</div>
         <canvas id="myCanvas"></canvas>
         <div class="text" data-splitting="">Happy Birthday<br> Pham The Son!</div>
         <div class="presents">
@@ -124,6 +129,7 @@
             </div>
         </div>
     </div>
+    <!-- partial -->
     <script src='https://cdn.jsdelivr.net/mojs/0.288.1/mo.min.js'></script>
     <script src='https://cdn.jsdelivr.net/mojs-player/0.43.15/mojs-player.min.js'></script>
     <script src='https://unpkg.com/splitting/dist/splitting.min.js'></script>
@@ -192,7 +198,7 @@
             // Ẩn hiệu ứng loading và container ban đầu
             loadingOverlay.style.display = "none";
             container.style.display = "none";
-            birthdayMessage.style.display = 'none';
+            birthdayMessage.style.display = "none";
 
             // Đếm ngược
             countdown();
