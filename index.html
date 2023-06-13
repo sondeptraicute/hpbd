@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Happy Birthday Phạm Thế Sơn!</title>
+    <title>CodePen - Happy Birthday JavaScript!</title>
     <link rel='stylesheet' href='https://unpkg.com/splitting/dist/splitting.css'>
     <link rel='stylesheet' href='https://unpkg.com/splitting/dist/splitting-cells.css'>
     <link rel="stylesheet" href="css/style1.css">
@@ -78,16 +78,7 @@
             transform: translate(-50%, -50%);
         }
         
-        .birthday-message {
-            min-width: 100%;
-            text-align: center;
-            color: white;
-            text-shadow: 1px 1px #2C3A49;
-            font-size: 2em;
-            position: relative;
-            transform: translateX(-50%);
-        }
-         #image {
+        #image {
             width: 100px;
             height: 100px;
             border-radius: 50%;
@@ -123,12 +114,22 @@
             100% {
                 transform: translateY(0);
                 opacity: 1;
-            
+            }
+        }
+        
+        .birthday-message {
+            min-width: 100%;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px #2C3A49;
+            font-size: 2em;
+            position: relative;
+        }
     </style>
 </head>
 
 <body>
-   <div class="birthday-message" id="birthdayMessage">Counting down to Pham The Son's birthday !</div>
+    <div class="birthday-message" id="birthdayMessage">Counting down to Pham The Son's birthday.</div>
     <div id="countdown">00:00:00</div>
     <div class="container-loading" id="loadingOverlay">
         <div class="text-load">
@@ -145,7 +146,7 @@
     <div class="container">
         <canvas id="myCanvas"></canvas>
         <div class="text" data-splitting="">Happy Birthday<br> Pham The Son!</div>
-         <div class="image-container">
+        <div class="image-container">
             <img src="img/avt.jpg" id="image">
         </div>
         <div class="presents">
@@ -182,7 +183,7 @@
 
             function updateCountdown() {
                 var now = new Date().getTime();
-                var targetDate = new Date('2023-07-28T00:00:00').getTime();
+                var targetDate = new Date('2023-06-14T05:30:00').getTime();
                 var distance = targetDate - now;
 
                 if (distance < 0) {
@@ -199,11 +200,12 @@
                     countdownElement.textContent = padZero(days) + ':' + padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
                 }
             }
-// Ẩn dòng chữ sinh nhật
-function hideBirthdayMessage() {
-    var birthdayMessage = document.getElementById('birthdayMessage');
-    birthdayMessage.style.display = 'none';
-}
+            // Ẩn dòng chữ sinh nhật
+            function hideBirthdayMessage() {
+                var birthdayMessage = document.getElementById('birthdayMessage');
+                birthdayMessage.style.display = 'none';
+            }
+
             function padZero(value) {
                 return value.toString().padStart(2, '0');
             }
@@ -214,9 +216,7 @@ function hideBirthdayMessage() {
         // Ẩn hiệu ứng đếm ngược
         function hideCountdown() {
             var countdownElement = document.getElementById('countdown');
-            var birthdayMessage = document.querySelector('.birthday-message');
             countdownElement.style.display = 'none';
-            birthdayMessage.style.display = 'none';
         }
 
         // Hiển thị hiệu ứng loading
@@ -231,7 +231,7 @@ function hideBirthdayMessage() {
             setTimeout(function() {
                 loadingOverlay.style.display = "none";
                 container.style.display = "block";
-                startConfetti(); // Gọi hàm bắt đầu hiệu ứng confetti
+                startConfetti();
             }, 3000); // Thời gian tạm thời 3 giây, bạn có thể thay đổi thời gian tùy ý
         }
 
@@ -239,31 +239,29 @@ function hideBirthdayMessage() {
         window.addEventListener('load', function() {
             var loadingOverlay = document.getElementById("loadingOverlay");
             var container = document.querySelector(".container");
-            var birthdayMessage = document.querySelector('.birthday-message');
 
             // Ẩn hiệu ứng loading và container ban đầu
             loadingOverlay.style.display = "none";
             container.style.display = "none";
-            birthdayMessage.style.display = "none";
 
             // Đếm ngược
             countdown();
         });
-    // Hàm bắt đầu hiệu ứng confetti
-    function startConfetti() {
-        confetti.start();
-        stopConfetti(); // Gọi hàm dừng hiệu ứng confetti sau một khoảng thời gian
-    }
+        // Hàm bắt đầu hiệu ứng confetti
+        function startConfetti() {
+            confetti.start();
+            stopConfetti(); // Gọi hàm dừng hiệu ứng confetti sau một khoảng thời gian
+        }
 
-    // Hàm dừng hiệu ứng confetti
-    function stopConfetti() {
-        setTimeout(function() {
-            confetti.stop();
-        }, 7000); // Thời gian tạm thời 7 giây, bạn có thể thay đổi thời gian tùy ý
-    }
+        // Hàm dừng hiệu ứng confetti
+        function stopConfetti() {
+            setTimeout(function() {
+                confetti.stop();
+            }, 7000); // Thời gian tạm thời 7 giây, bạn có thể thay đổi thời gian tùy ý
+        }
     </script>
     <script src="js/confetti.js"></script>
-
+    <!-- Confetti  JS-->
 </body>
 
 </html>
