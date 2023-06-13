@@ -18,6 +18,9 @@ body {
     color: white;
     text-shadow: 1px 1px #2C3A49;
     font-size: 3em;
+    position: relative;
+    top: -80px;
+    /* Di chuyển lên phía trên tầm 50px */
 }
 
 .text .char {
