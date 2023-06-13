@@ -128,7 +128,7 @@
 </head>
 
 <body>
-    <div class="birthday-message">Đếm ngược đến sinh nhật Phạm Thế Sơn</div>
+   <div class="birthday-message" id="birthdayMessage">Đếm ngược đến sinh nhật Phạm Thế Sơn</div>
     <div id="countdown">00:00:00</div>
     <div class="container-loading" id="loadingOverlay">
         <div class="text-load">
@@ -189,6 +189,7 @@
                     clearInterval(countdownInterval);
                     hideCountdown();
                     showLoading();
+                    hideBirthdayMessage();
                 } else {
                     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
                     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -198,7 +199,11 @@
                     countdownElement.textContent = padZero(days) + ':' + padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
                 }
             }
-
+// Ẩn dòng chữ sinh nhật
+function hideBirthdayMessage() {
+    var birthdayMessage = document.getElementById('birthdayMessage');
+    birthdayMessage.style.display = 'none';
+}
             function padZero(value) {
                 return value.toString().padStart(2, '0');
             }
