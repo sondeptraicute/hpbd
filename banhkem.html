@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Happy Birthday JavaScript!</title>
+    <link rel='stylesheet' href='https://unpkg.com/splitting/dist/splitting.css'>
+    <link rel='stylesheet' href='https://unpkg.com/splitting/dist/splitting-cells.css'>
+    <link rel="stylesheet" href="css/style1.css">
+    <style>
+        body {
+            background: #1d2630;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .text-load {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .loading {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading .line-box {
+            padding: 2px;
+            width: 100%;
+            height: 20px;
+            border: 2px solid #267591;
+            border-radius: 20px;
+        }
+        
+        .loading .line-box .line {
+            height: 20px;
+            border-radius: 20px;
+            background: #67D295;
+            animation: loading 2s forwards cubic-bezier(0, 0, 0, 0);
+        }
+        
+        @keyframes loading {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+        
+        .container {
+            display: none;
+        }
+        
+        #countdown {
+            color: white;
+            font-size: 50px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="countdown">00:00:00</div>
+    <div class="container-loading" id="loadingOverlay">
+        <div class="text-load">
+            <h1>Loading...</h1>
+        </div>
+        <div class="loading">
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    <!-- partial:index.partial.html -->
+
+    <div class="container">
+        <canvas id="myCanvas"></canvas>
+        <div class="text" data-splitting="">Happy Birthday<br> Pham The Son!</div>
+        <div class="presents">
+            <div class="present orange">
+                <div class="lid"></div>
+                <div class="box"></div>
+                <div class="bow"></div>
+                <div class="ribbon"></div>
+            </div>
+            <div class="present blue">
+                <div class="lid"></div>
+                <div class="box"></div>
+                <div class="bow"></div>
+                <div class="ribbon"></div>
+            </div>
+            <div class="present green">
+                <div class="lid"></div>
+                <div class="box"></div>
+                <div class="bow"></div>
+                <div class="ribbon"></div>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdn.jsdelivr.net/mojs/0.288.1/mo.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/mojs-player/0.43.15/mojs-player.min.js'></script>
+    <script src='https://unpkg.com/splitting/dist/splitting.min.js'></script>
+    <script src="js/script1.js"></script>
+    <script>
+        // Đếm ngược từ giờ hiện tại đến 0 giờ ngày 28/07/2023
+        function countdown() {
+            var countdownElement = document.getElementById('countdown');
+            var countdownInterval = setInterval(updateCountdown, 1000);
+
+            function updateCountdown() {
+                var now = new Date().getTime();
+                var targetDate = new Date('2023-07-28T00:00:00').getTime();
+                var distance = targetDate - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    hideCountdown();
+                    showLoading();
+                } else {
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    countdownElement.textContent = padZero(days) + ':' + padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
+                }
+            }
+
+            function padZero(value) {
+                return value.toString().padStart(2, '0');
+            }
+
+            updateCountdown();
+        }
+
+        // Ẩn hiệu ứng đếm ngược
+        function hideCountdown() {
+            var countdownElement = document.getElementById('countdown');
+            countdownElement.style.display = 'none';
+        }
+
+        // Hiển thị hiệu ứng loading
+        function showLoading() {
+            var loadingOverlay = document.getElementById("loadingOverlay");
+            var container = document.querySelector(".container");
+
+            // Hiển thị hiệu ứng loading
+            loadingOverlay.style.display = "flex";
+
+            // Simulate loading process
+            setTimeout(function() {
+                loadingOverlay.style.display = "none";
+                container.style.display = "block";
+            }, 3000); // Thời gian tạm thời 3 giây, bạn có thể thay đổi thời gian tùy ý
+        }
+
+        // Bắt đầu đếm ngược khi trang web được tải hoàn chỉnh
+        window.addEventListener('load', function() {
+            var loadingOverlay = document.getElementById("loadingOverlay");
+            var container = document.querySelector(".container");
+
+            // Ẩn hiệu ứng loading và container ban đầu
+            loadingOverlay.style.display = "none";
+            container.style.display = "none";
+
+            // Đếm ngược
+            countdown();
+        });
+    </script>
+</body>
+
+</html>
