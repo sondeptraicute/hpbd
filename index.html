@@ -79,12 +79,12 @@
         }
         
         .birthday-message {
-            color: white;
-            font-size: 20px;
+            min-width: 100%;
             text-align: center;
-            position: absolute;
-            top: 20px;
-            left: 50%;
+            color: white;
+            text-shadow: 1px 1px #2C3A49;
+            font-size: 2em;
+            position: relative;
             transform: translateX(-50%);
         }
          #image {
@@ -128,7 +128,7 @@
 </head>
 
 <body>
-   <div class="birthday-message" id="birthdayMessage">Đếm ngược đến sinh nhật Phạm Thế Sơn</div>
+   <div class="birthday-message" id="birthdayMessage">Counting down to Pham The Son's birthday !</div>
     <div id="countdown">00:00:00</div>
     <div class="container-loading" id="loadingOverlay">
         <div class="text-load">
@@ -182,7 +182,7 @@
 
             function updateCountdown() {
                 var now = new Date().getTime();
-                var targetDate = new Date('2023-06-14T04:40:00').getTime();
+                var targetDate = new Date('2023-07-28T00:00:00').getTime();
                 var distance = targetDate - now;
 
                 if (distance < 0) {
